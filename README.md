@@ -10,8 +10,16 @@ Este script automatiza el proceso de anotación de variantes raras a partir de a
 - Plink + Plink2
 
 ## 📦 Archivos requeridos
-- Archivo VCF a anotar
-- Lista de genes de interés
+- Archivo VCF a anotar. El archivo debe usar el formato comprimido (.vcf.gz)
+- Lista de genes de interés. Este archivo debe seguir el siguiente formato:
+Gene_group	Gene_name	Canonical_Transcript
+0	APP	ENST00000346798.8
+0	PSEN1	ENST00000324501.10
+0	PSEN2	ENST00000366783.8
+1	GRN	ENST00000053867.8
+1	MAPT	ENST00000262410.10
+1	CHMP2B	ENST00000263780.9
+1	FUS	ENST00000254108.12
 - Imagen Singularity de snpEff
 - Scripts `.R`: `Filter_EffectVar.R`, `Create_ADAD_summ.R`, `Summary_varandcarriers.R`
 
