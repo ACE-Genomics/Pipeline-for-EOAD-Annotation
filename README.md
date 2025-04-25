@@ -18,8 +18,8 @@ Este script automatiza el proceso de anotación de variantes a partir de archivo
 ## 🚀 Uso
 
 sbatch EOAD_Annotation_JA.sh \
---inputvcf ../data/wes_joint_chr.snps.indels.g_recalibrated.vcf.gz \
---phenofile /nas/Genomica/02-Projects/2023_EOAD-clinical_VF-R2/202411_EOAD-AES.pheno \
---tag EOAD_TS \
---genes 202410_target_gene_list.txt \
---workdir /nas/Genomica/02-Projects/2025_EOAD-clinical_AVS/2023_EOAD-clinical-TESTS/prueba_automatized/
+--inputvcf /ruta/a/archivo.vcf.gz \
+--phenofile /ruta/a/archivo.pheno \
+--tag nombre_del_tag \
+--genes /ruta/a/lista_de_genes.txt \
+--workdir /ruta/a/directorio_de_trabajo
