@@ -1,6 +1,6 @@
 # Variant Annotation Pipeline
 
-Este script automatiza el proceso de anotación de variantes a partir de archivos VCF utilizando SnpEff y dbNSFP, además de filtrar genes de interés y generar análisis de portadores.
+Este script automatiza el proceso de anotación de variantes raras a partir de archivos VCF utilizando SnpEff y dbNSFP, además de filtrar genes de interés y generar análisis de portadores.
 
 ## 🛠️ Requisitos Cluster
 - Java (>= 11)
