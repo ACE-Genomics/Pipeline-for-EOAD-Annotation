@@ -10,8 +10,8 @@ Este script automatiza el proceso de anotación de variantes raras a partir de a
 - Plink + Plink2
 
 ## 📦 Archivos requeridos
-- archivo.vcf.gz: Archivo VCF a anotar. El archivo debe usar el formato comprimido (.vcf.gz)
-- lista_de_genes.txt: Lista de genes de interés. Este archivo debe seguir el siguiente formato:
+- **archivo.vcf.gz**: Archivo VCF a anotar. El archivo debe usar el formato comprimido (.vcf.gz)
+- **lista_de_genes.txt:** Lista de genes de interés. Este archivo debe seguir el siguiente formato:
   
 | Gene_group | Gene_name | Canonical_Transcript    |
 |------------|-----------|-------------------------|
@@ -26,6 +26,8 @@ Este script automatiza el proceso de anotación de variantes raras a partir de a
 | 1          | TBK1      | ENST00000331710.10      |
 
 El archivo de ejemplo con este formato tiene el nombre **202410_target_gene_list.txt**, pero puede ser modificado por el usuario para incluir nuevas versiones o genes adicionales según sea necesario.
+- **lista_de_genes.txt:** Lista de genes de interés. Este archivo debe seguir el siguiente formato:
+
 
 - Imagen Singularity de snpEff
 - Scripts `.R`: `Filter_EffectVar.R`, `Create_ADAD_summ.R`, `Summary_varandcarriers.R`
