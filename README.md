@@ -9,6 +9,15 @@ This script automates the annotation process of rare variants from VCF files usi
 - R y los paquetes necesarios (para los scripts `.R`)
 - Plink + Plink2
 
+## 🚀 Usage
+
+sbatch EOAD_Annotation_JA.sh \
+--inputvcf /ruta/a/archivo.vcf.gz \
+--phenofile /ruta/a/archivo.pheno \
+--tag nombre_del_tag \
+--genes /ruta/a/lista_de_genes.txt \
+--workdir /ruta/a/directorio_de_trabajo
+
 ## 📦 Input files required
 A) - **archivo.vcf.gz:** VCF file to annotate. The file must be in compressed format (.vcf.gz)
 
@@ -47,15 +56,24 @@ Tab-delimited file where <u>1 column MUST contain sample ID code with the column
 
 PSP-sample.pheno serves as a sample file for this requirement
 
-E) - Imagen Singularity de snpEff
+E) - **<tag>** tag name used for final output files
 
-F) - Scripts `.R`: `Filter_EffectVar.R`, `Create_ADAD_summ.R`, `Summary_varandcarriers.R`
+F) - Imagen Singularity de snpEff
 
-## 🚀 Uso
+G) - Scripts `.R`: `Filter_EffectVar.R`, `Create_ADAD_summ.R`, `Summary_varandcarriers.R`
 
-sbatch EOAD_Annotation_JA.sh \
---inputvcf /ruta/a/archivo.vcf.gz \
---phenofile /ruta/a/archivo.pheno \
---tag nombre_del_tag \
---genes /ruta/a/lista_de_genes.txt \
---workdir /ruta/a/directorio_de_trabajo
+## 📂 Output
+A) FULL LIST OF VARIANTS AND GENETIC DOSES FOR INDIVIDUALS IN THE ANALYSIS
+<TAG>FullTable_EOAD_variants.txt
+<TAG>FullTable_EOAD_variants.xlsx
+
+B) LIST OF HIGH-SCORING VARIANTS AND RESPECTIVE CARRIERS
+<TAG>pheno_EOAD_carriers.txt
+<TAG>pheno_EOAD_carriers.xlsx
+
+C) LIST OF ALZFORUM PATHOGENEIC VARIANTS AND RESPECTIVE CARRIERS
+<TAG>pheno_EOAD_carriersAlzF.txt
+<TAG>pheno_EOAD_carriersAlzF.xlsx
+
+
+
