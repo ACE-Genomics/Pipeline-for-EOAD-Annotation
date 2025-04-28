@@ -12,16 +12,16 @@ This script automates the annotation process of rare variants from VCF files usi
 ## 🚀 Usage
 
 sbatch EOAD_Annotation_JA.sh \
---inputvcf /ruta/a/archivo.vcf.gz \
---phenofile /ruta/a/archivo.pheno \
+--inputvcf /path/to/input.vcf.gz \
+--phenofile /path/to/file.pheno \
 --tag nombre_del_tag \
---genes /ruta/a/lista_de_genes.txt \
---workdir /ruta/a/directorio_de_trabajo
+--genes /path/to/list_of_genes.txt \
+--workdir /path/to/working_directory
 
 ## 📦 Input files required
-A) - **archivo.vcf.gz:** VCF file to annotate. The file must be in compressed format (.vcf.gz)
+A) - **input.vcf.gz** VCF file to annotate. The file must be in compressed format (.vcf.gz)
 
-B) - **lista_de_genes.txt**: List of genes of interest. This file must follow the following format:
+B) - **list_of_genes.txt**: List of genes of interest. This file must follow the following format:
   
 | Gene_group | Gene_name | Canonical_Transcript    |
 |------------|-----------|-------------------------|
@@ -46,7 +46,7 @@ C) - **20240429_LGM_list_grCh38.xlsx**: Reference EXCEL file containing variant 
  
 For now, the pipeline only allows the use of these reference variants for AlzForum (update planned for future versions).
 
-D) **archivo.pheno** with phenotypes for individuals included in the variant annotation analysis:
+D) **file.pheno** with phenotypes for individuals included in the variant annotation analysis:
 
 Tab-delimited file where <u>1 column MUST contain sample ID code with the column name "IID"</u> matching sample IDs from the vcf input file
 
