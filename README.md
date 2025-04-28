@@ -59,7 +59,7 @@ PSP-sample.pheno serves as a sample file for this requirement
 
 E) - **<tag>** tag name used for final output files
 
-F) - Imagen Singularity de snpEff
+F) - Singularity image from snpEff
 
 G) - Scripts `.R`: `Filter_EffectVar.R`, `Create_ADAD_summ.R`, `Summary_varandcarriers.R`
 
