@@ -12,6 +12,7 @@ Este script automatiza el proceso de anotación de variantes raras a partir de a
 ## 📦 Archivos requeridos
 - archivo.vcf.gz: Archivo VCF a anotar. El archivo debe usar el formato comprimido (.vcf.gz)
 - lista_de_genes.txt: Lista de genes de interés. Este archivo debe seguir el siguiente formato:
+  
 | Gene_group | Gene_name | Canonical_Transcript    |
 |------------|-----------|-------------------------|
 | 0          | APP       | ENST00000346798.8       |
