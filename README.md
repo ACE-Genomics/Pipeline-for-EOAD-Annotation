@@ -47,7 +47,8 @@ C) - **20240429_LGM_list_grCh38.xlsx**: Reference EXCEL file containing variant 
 For now, the pipeline only allows the use of these reference variants for AlzForum (update planned for future versions).
 
 D) **archivo.pheno** with phenotypes for individuals included in the variant annotation analysis:
-Tab-delimited file where <u>1 column MUST contain sample ID code with the column name "IID"</u>
+
+Tab-delimited file where <u>1 column MUST contain sample ID code with the column name "IID"</u> matching sample IDs from the vcf input file
 
 | FID         | IID         | PID | MID | Sex | Status | Age  | Center              | GWAs_ID |
 |-------------|-------------|-----|-----|-----|--------|------|---------------------|---------|
