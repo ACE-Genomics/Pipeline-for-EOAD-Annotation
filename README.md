@@ -65,15 +65,22 @@ G) - Scripts `.R`: `Filter_EffectVar.R`, `Create_ADAD_summ.R`, `Summary_varandca
 
 ## 📂 Output
 A) FULL LIST OF VARIANTS AND GENETIC DOSES FOR INDIVIDUALS IN THE ANALYSIS
+
 <TAG>FullTable_EOAD_variants.txt
+
 <TAG>FullTable_EOAD_variants.xlsx
 
 B) LIST OF HIGH-SCORING VARIANTS AND RESPECTIVE CARRIERS
+
 <TAG>pheno_EOAD_carriers.txt
+
 <TAG>pheno_EOAD_carriers.xlsx
 
+
 C) LIST OF ALZFORUM PATHOGENEIC VARIANTS AND RESPECTIVE CARRIERS
+
 <TAG>pheno_EOAD_carriersAlzF.txt
+
 <TAG>pheno_EOAD_carriersAlzF.xlsx
 
 
