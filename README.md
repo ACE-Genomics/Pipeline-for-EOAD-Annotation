@@ -10,8 +10,8 @@ Este script automatiza el proceso de anotación de variantes raras a partir de a
 - Plink + Plink2
 
 ## 📦 Archivos requeridos
-- **archivo.vcf.gz**: Archivo VCF a anotar. El archivo debe usar el formato comprimido (.vcf.gz)
-- **lista_de_genes.txt:** Lista de genes de interés. Este archivo debe seguir el siguiente formato:
+A) - **archivo.vcf.gz**: Archivo VCF a anotar. El archivo debe usar el formato comprimido (.vcf.gz)
+B) - **lista_de_genes.txt:** Lista de genes de interés. Este archivo debe seguir el siguiente formato:
   
 | Gene_group | Gene_name | Canonical_Transcript    |
 |------------|-----------|-------------------------|
@@ -26,11 +26,17 @@ Este script automatiza el proceso de anotación de variantes raras a partir de a
 | 1          | TBK1      | ENST00000331710.10      |
 
 El archivo de ejemplo con este formato tiene el nombre **202410_target_gene_list.txt**, pero puede ser modificado por el usuario para incluir nuevas versiones o genes adicionales según sea necesario.
-- **lista_de_genes.txt:** Lista de genes de interés. Este archivo debe seguir el siguiente formato:
+C) - **20240429_LGM_list_grCh38.xlsx:** Archivo EXCEL de referencia con metainformación de variantes de AlzForum
+  | n | Gene_name | input         | transcript                | strand | gDNA                 | Type | CHR_POS       | CHR_POS_REF_ALT       | cDNA      | protein | Source | Dx | AlzForum_category   |
+|---|-----------|---------------|----------------------------|--------|----------------------|------|---------------|-----------------------|-----------|---------|--------|----|---------------------|
+| 1 | PSEN2     | PSEN2:p.T122P  | NM_000447 (protein_coding) | +      | chr1:g.226885545A>C   | SNP  | chr1:226885545 | chr1:226885545:A:C     | c.364A>C  | p.T122P  | DIAN   | AD | likely pathogenic   |
+| 2 | PSEN2     | PSEN2:p.N141Y  | NM_000447 (protein_coding) | +      | chr1:g.226885602A>T   | SNP  | chr1:226885602 | chr1:226885602:A:T     | c.421A>T  | p.N141Y  | DIAN   | AD | likely pathogenic   |
+| 3 | PSEN2     | PSEN2:p.N141I  | NM_000447 (protein_coding) | +      | chr1:g.226885603A>T   | SNP  | chr1:226885603 | chr1:226885603:A:T     | c.422A>T  | p.N141I  | DIAN   | AD | pathogenic           |
+  De momento la pipeline solo permite usar estas variantes de referencia para Alzforum (_update_ para futuras versiones)
+D)
 
-
-- Imagen Singularity de snpEff
-- Scripts `.R`: `Filter_EffectVar.R`, `Create_ADAD_summ.R`, `Summary_varandcarriers.R`
+E) - Imagen Singularity de snpEff
+F) - Scripts `.R`: `Filter_EffectVar.R`, `Create_ADAD_summ.R`, `Summary_varandcarriers.R`
 
 ## 🚀 Uso
 
