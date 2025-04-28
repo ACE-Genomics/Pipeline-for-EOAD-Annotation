@@ -11,6 +11,7 @@ This script automates the annotation process of rare variants from VCF files usi
 
 ## 📦 Input files required
 A) - **archivo.vcf.gz:** VCF file to annotate. The file must be in compressed format (.vcf.gz)
+
 B) - **lista_de_genes.txt**: List of genes of interest. This file must follow the following format:
   
 | Gene_group | Gene_name | Canonical_Transcript    |
@@ -45,7 +46,9 @@ Tab-delimited file where 1 column MUST contain sample ID code with the column na
 | 22D28227797 | 22D28227797 | 0   | 0   | 2   | 2      | 64   | Clinic_hist          | 1729    |
 
 PSP-sample.pheno serves as a sample file for this requirement
+
 E) - Imagen Singularity de snpEff
+
 F) - Scripts `.R`: `Filter_EffectVar.R`, `Create_ADAD_summ.R`, `Summary_varandcarriers.R`
 
 ## 🚀 Uso
