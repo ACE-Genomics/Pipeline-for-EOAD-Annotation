@@ -6,7 +6,7 @@ This script automates the annotation process of rare variants from VCF files usi
 - Java (>= 11)
 - Singularity
 - SnpEff + SnpSift
-- R y los paquetes necesarios (para los scripts `.R`)
+- R and needed packages ( `.R`)
 - Plink + Plink2
 
 ## 🚀 Usage
