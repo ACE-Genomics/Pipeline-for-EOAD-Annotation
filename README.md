@@ -8,6 +8,7 @@ This script automates the annotation process of rare variants from VCF files usi
 - SnpEff + SnpSift
 - R and needed packages ( `.R`)
 - Plink + Plink2
+- SpliceAI conda environment
 
 ## 🚀 Usage
 
