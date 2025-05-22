@@ -90,16 +90,31 @@ genes1$P3[is.na(genes1$gnomAD_genomes_AF) & is.na(genes1$gnomAD_exomes_AF)] <- 3
 # Si al menos un valor es mayor que 0.01, asignar 0
 genes1$P3[is.na(genes1$P3) & (genes1$gnomAD_genomes_AF > 0.01 | genes1$gnomAD_exomes_AF > 0.01)] <- 0
 
+#spliceai_score
+# Esto asume que SpliceAI tiene siempre 11 campos separados por "|"
+split_spliceAI <- do.call(rbind, strsplit(genes1$SpliceAI, "\\|"))
+
+# Paso 2: Convertir los campos de interés a numéricos
+# Índices: 3 = DS_AG, 4 = DS_AL, 5 = DS_DG, 6 = DS_DL
+DS_AG <- as.numeric(split_spliceAI[, 3])
+DS_AL <- as.numeric(split_spliceAI[, 4])
+DS_DG <- as.numeric(split_spliceAI[, 5])
+DS_DL <- as.numeric(split_spliceAI[, 6])
+
+# Paso 3: Calcular P4: 1 si alguno > 0.2, 0 si no
+# Inicializar todo en 0
+genes1$P4 <- 0
+
+# Ahora asignar 1 solo donde se cumple la condición
+genes1$P4[DS_AG > 0.2 | DS_AL > 0.2 | DS_DG > 0.2 | DS_DL > 0.2] <- 1
+
 #print(genes1)
 #print(genes1$Gene_name)
 
 # Clasificación final de variantes
-genes1$Variant_class <- genes1$P1 + genes1$P2 + genes1$P3
+genes1$Variant_class <- genes1$P1 + genes1$P2 + genes1$P3 + genes1$P4
 test <- genes1[which(genes1$Gene_name == "APOE"),]
-print(test$Variant_class)
 test2 <- table(test$Variant_class, test$Gene_name)
-print(test2)
-
 
 # Filtrado especial de TREM2
 genes1_trem2 <- genes1[genes1$Gene_name == "TREM2",]

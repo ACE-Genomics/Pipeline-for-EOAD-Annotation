@@ -152,10 +152,16 @@ echo "5- Using dbSNFP to annotate custom fields and filter information on varian
 ## 3) Annotate with dbNSFP custom fields
 ${JAVA} -Xmx15g -jar ${SNPSIFT} dbnsfp -v -db ${DBNSFP} -f CADD_phred,Polyphen2_HVAR_pred,SIFT_pred,MutationTaster_pred,MutationAssessor_pred,ESP6500_EA_AF,ExAC_AF,ExAC_NFE_AF,ExAC_NFE_AC,ExAC_Adj_AF,1000Gp3_AF,gnomAD_exomes_NFE_AC,gnomAD_exomes_NFE_AF,gnomAD_genomes_NFE_AF,gnomAD_genomes_AF,gnomAD_exomes_AF,LRT_score,REVEL_score,clinvar_id,clinvar_clnsig,clinvar_trait,clinvar_review,clinvar_hgvs,clinvar_MedGen_id,clinvar_OMIM_id,clinvar_Orphanet_id ${ANNOTDIR}/${VCF%.*}-snpEff.vcf > ${ANNOTDIR}/${VCF%.*}-snpEff-dbnsfp.vcf
 
-## 4) Split per line
-cat ${ANNOTDIR}/${VCF%.*}-snpEff-dbnsfp.vcf | ${ONEPERLINE} | ${JAVA} -Xmx15g -jar ${SNPSIFT} extractFields -e "."  - CHROM POS ID REF ALT QUAL FILTER "ANN[*].ALLELE" "ANN[*].EFFECT" "ANN[*].IMPACT" "ANN[*].GENE" "ANN[*].GENEID" "ANN[*].FEATURE" "ANN[*].FEATUREID" "ANN[*].HGVS_C" "ANN[*].HGVS_P" "ANN[*].CDNA_POS" "dbNSFP_CADD_phred" "dbNSFP_Polyphen2_HVAR_pred" "dbNSFP_SIFT_pred" "dbNSFP_MutationTaster_pred" "dbNSFP_MutationAssessor_pred" "dbNSFP_ESP6500_EA_AF" "dbNSFP_ExAC_AF" "dbNSFP_ExAC_NFE_AF" "dbNSFP_ExAC_NFE_AC" "dbNSFP_ExAC_Adj_AF" "dbNSFP_1000Gp3_AF" "dbNSFP_gnomAD_exomes_NFE_AC" "dbNSFP_gnomAD_exomes_NFE_AF" "dbNSFP_gnomAD_genomes_NFE_AF" "dbNSFP_gnomAD_genomes_AF" "dbNSFP_gnomAD_exomes_AF" "dbNSFP_LRT_score" "dbNSFP_REVEL_score" "dbNSFP_clinvar_id" "dbNSFP_clinvar_clnsig" "dbNSFP_clinvar_trait" "dbNSFP_clinvar_review" "dbNSFP_clinvar_hgvs" "dbNSFP_clinvar_MedGen_id" "dbNSFP_clinvar_OMIM_id" "dbNSFP_clinvar_Orphanet_id" > ${ANNOTDIR}/${VCF%.*}-snpEff-dbnsfp-FIELDS.txt
+echo "5.2- Including information on SpliceAI for variants"
+eval "$(conda shell.bash hook)"
+conda activate spliceai-env
+spliceai -I ${ANNOTDIR}/${VCF%.*}-snpEff-dbnsfp.vcf -O ${ANNOTDIR}/${VCF%.*}-snpEff-dbnsfp-SpliceAI.vcf -R ${REF} -A grch38
+conda deactivate
 
-echo "5- Annotation of fields completed"
+## 4) Split per line
+cat ${ANNOTDIR}/${VCF%.*}-snpEff-dbnsfp-SpliceAI.vcf | ${ONEPERLINE} | ${JAVA} -Xmx15g -jar ${SNPSIFT} extractFields -e "."  - CHROM POS ID REF ALT QUAL FILTER "ANN[*].ALLELE" "ANN[*].EFFECT" "ANN[*].IMPACT" "ANN[*].GENE" "ANN[*].GENEID" "ANN[*].FEATURE" "ANN[*].FEATUREID" "ANN[*].HGVS_C" "ANN[*].HGVS_P" "ANN[*].CDNA_POS" "dbNSFP_CADD_phred" "dbNSFP_Polyphen2_HVAR_pred" "dbNSFP_SIFT_pred" "dbNSFP_MutationTaster_pred" "dbNSFP_MutationAssessor_pred" "dbNSFP_ESP6500_EA_AF" "dbNSFP_ExAC_AF" "dbNSFP_ExAC_NFE_AF" "dbNSFP_ExAC_NFE_AC" "dbNSFP_ExAC_Adj_AF" "dbNSFP_1000Gp3_AF" "dbNSFP_gnomAD_exomes_NFE_AC" "dbNSFP_gnomAD_exomes_NFE_AF" "dbNSFP_gnomAD_genomes_NFE_AF" "dbNSFP_gnomAD_genomes_AF" "dbNSFP_gnomAD_exomes_AF" "dbNSFP_LRT_score" "dbNSFP_REVEL_score" "dbNSFP_clinvar_id" "dbNSFP_clinvar_clnsig" "dbNSFP_clinvar_trait" "dbNSFP_clinvar_review" "dbNSFP_clinvar_hgvs" "dbNSFP_clinvar_MedGen_id" "dbNSFP_clinvar_OMIM_id" "dbNSFP_clinvar_Orphanet_id" "SpliceAI"" > ${ANNOTDIR}/${VCF%.*}-snpEff-dbnsfp-FIELDS.txt
+
+echo "5.2- Annotation of fields completed"
 
 echo "6- Removing flagged variants and extracting variants and genes of interest from table"
 # 7) Remove flagged variants and extracting variants and genes of interest
@@ -211,6 +217,7 @@ echo "9- Identifying carriers"
 ## 13) identify carriers
 #First account for the possiubility of duplicates
 
+rm ${FILTERDIR}SUBSET_ALL_GENES_INTEREST*
 cat ${FILTERDIR}SUBSET_* > ${FILTERDIR}SUBSET_ALL_GENES_INTEREST.txt
 cut -f 3 ${FILTERDIR}SUBSET_ALL_GENES_INTEREST.txt | sort | uniq > ${FILTERDIR}SUBSET_ALL_GENES_INTEREST.variants
 

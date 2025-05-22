@@ -28,7 +28,7 @@ colnames(df) <- c("CHROM","POS","ID","REF","ALT","QUAL","FILTER",
                   "ESP6500_EA_AF","ExAC_AF","ExAC_NFE_AF","ExAC_NFE_AC","ExAC_Adj_AF","1000Gp3_AF",
                   "gnomAD_exomes_NFE_AC","gnomAD_exomes_NFE_AF","gnomAD_genomes_NFE_AF","gnomAD_genomes_AF","gnomAD_exomes_AF",
                   "LRT_score","REVEL_score","clinvar_id","clinvar_clnsig","clinvar_trait",
-                  "clinvar_review","clinvar_hgvs","clinvar_MedGen_id","clinvar_OMIM_id","clinvar_Orphanet_id")
+                  "clinvar_review","clinvar_hgvs","clinvar_MedGen_id","clinvar_OMIM_id","clinvar_Orphanet_id","SpliceAI")
 
 # Unir los genes con el dataframe de variantes
 genes1 <- genes %>% left_join(df, by = c("Gene_name" = "GENE"), multiple = "all")
