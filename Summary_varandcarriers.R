@@ -13,12 +13,16 @@ args <- commandArgs(trailingOnly = TRUE)
 pheno_file <- args[1]
 genotypes_file <- args[2]
 genes_file <- args[3]
-output_prefix <- args[4]
+gene_groups_file <- args[4]
+output_prefix <- args[5]
 
 ## Cargar datos previos
 load(genes_file)
+
 genotypes <- fread(genotypes_file, h=T)
 pheno <- fread(pheno_file, h=T)
+gene_groups <- fread(gene_groups_file, h=T)
+
 
 ## Curación de datos
 # Verificar si genes2 es un data.frame
@@ -26,6 +30,7 @@ pheno <- fread(pheno_file, h=T)
 genes2 <- as.data.frame(genes2)
 genes2$CHR_POS_REF_ALT_REF <- paste0(genes2$CHR_POS_REF_ALT, "_", genes2$REF)
 genes2 <- genes2[,-c(1)] %>% distinct()
+
 
 # Invertir dosis en genotipos
 genotypes <- as.data.frame(genotypes)
@@ -214,11 +219,15 @@ rownames(temp7a9_gene) <- rownames(temp7a9_pos)
 
 
 # Variantes en Genes0
+genes2 <- left_join(genes2, gene_groups,
+by=c("Gene_name" = "Gene_name", "Canonical_Transcript" = "Canonical_Transcript"))
+
 list_genes0 <- genes2[which(genes2$Gene_group==0),c("CHR_POS_REF_ALT","Gene_name")]
+
 #print(temp)
 temp_g0 <- temp[, which(colnames(temp) %in% c(list_genes0$CHR_POS_REF_ALT)), drop = FALSE]
-#print(temp_g0)
-temp_g0$carrier_of_Nvar_g0 <- apply(temp_g0, 1, sum) 
+
+temp_g0$carrier_of_Nvar_g0 <- apply(temp_g0, 1, function(x) sum(x, na.rm = TRUE))
 
 
 

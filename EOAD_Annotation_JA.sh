@@ -238,6 +238,7 @@ ${PLINK2} --bfile ${GENODIR}EOAD-vars-carriers-maf-LIST2 --recode A --out ${GENO
 Rscript Summary_varandcarriers.R ${PHENO} \
 ${GENODIR}EOAD-vars-carriers-maf-LIST2.raw \
 ${CLASSIFICATION}candidate-GENES-filtered.Rdata \
+${GENESFILE} \
 ${GENODIR}${TAG}
 
 echo "9- Summary created. Pipeline completed"
