@@ -53,10 +53,9 @@ Tab-delimited file where <u>1 column MUST contain sample ID code with the column
 
 | FID         | IID         | PID | MID | Sex | Status | Age  | Center              | GWAs_ID |
 |-------------|-------------|-----|-----|-----|--------|------|---------------------|---------|
-| 22D28227751 | 22D28227751 | 0   | 0   | 2   | 2      | 71.6 | CUN_Pamplona_hist    | BCN396  |
-| 22D28227797 | 22D28227797 | 0   | 0   | 2   | 2      | 64   | Clinic_hist          | 1729    |
+| 12345678900 | 12345678900 | 0   | 0   | 2   | 2      | 71.6 | Center A            | CA-01   |
+| 12345678901 | 12345678901 | 0   | 0   | 2   | 2      | 64   | Center B            | CB-01   |
 
-PSP-sample.pheno serves as a sample file for this requirement
 
 E) - **<tag>** tag name used for final output files
 
