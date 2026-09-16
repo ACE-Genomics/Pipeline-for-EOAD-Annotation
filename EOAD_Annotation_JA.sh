@@ -225,7 +225,7 @@ cut -f 3 ${FILTERDIR}SUBSET_ALL_GENES_INTEREST.txt | sort | uniq > ${FILTERDIR}S
 ${PLINK} --vcf ${SPLITDIR}${VCF%.*.*}-norm-ref-annotate.vcf --double-id --make-bed --keep-allele-order --out ${GENODIR}EOAD-vars-carriers
 
 # Let's calcualte a MAF of 1 AC per 1064 people --> 1 allele between 2128 alelles = 0.00005
-${PLINK} --bfile ${GENODIR}EOAD-vars-carriers --extract ${FILTERDIR}SUBSET_ALL_GENES_INTEREST.txt --make-bed --keep-allele-order --maf 0.00005 --out ${GENODIR}EOAD-vars-carriers-maf-LIST2
+${PLINK} --bfile ${GENODIR}EOAD-vars-carriers --extract ${FILTERDIR}SUBSET_ALL_GENES_INTEREST.variants --make-bed --keep-allele-order --maf 0.00005 --out ${GENODIR}EOAD-vars-carriers-maf-LIST2
 
 # Get summary stats for these variants
 ${PLINK2} --bfile ${GENODIR}EOAD-vars-carriers-maf-LIST2 --freq --hardy --geno-counts --sample-counts --out ${GENODIR}EOAD-vars-STATS-LIST2
